@@ -1,32 +1,33 @@
 <template>
-  <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav>
-    <router-view />
-  </div>
+  <v-app>
+    <v-app-bar app color="primary" dark> </v-app-bar>
+
+    <v-main>
+      <router-view />
+    </v-main>
+  </v-app>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+<script lang="ts">
+import { Component, Vue } from "vue-property-decorator";
+import axios from "axios";
+@Component
+export default class App extends Vue {
+  async mounted() {
+    try {
+      //const response = await this.$axios.get("pokemon", {
+      //  params: {
+      //    limit: 100000,
+      //    offset: 0,
+      //  },
+      //});
+      console.log(this.$http);
+      this.$http.get("https://pokeapi.co/api/v2/pokemon").then((response) => {
+        console.log(response.data);
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  }
 }
-
-nav {
-  padding: 30px;
-}
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+</script>
