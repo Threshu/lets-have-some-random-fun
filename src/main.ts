@@ -5,8 +5,10 @@ import store from "./store";
 import vuetify from "./plugins/vuetify";
 import axiosInstance from "./axios.config";
 import VueAxios from 'vue-axios';
-import Snotify, { SnotifyPosition } from 'vue-snotify';
+import Snotify from 'vue-snotify';
+import "@mdi/font/css/materialdesignicons.css";
 import "vue-snotify/styles/material.css";
+import "../styles/main.scss";
 
 Vue.use(Snotify);
 Vue.use(VueAxios, axiosInstance);

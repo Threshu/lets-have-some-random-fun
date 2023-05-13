@@ -1,3 +1,12 @@
 module.exports = {
-  transpileDependencies: ["vuetify"],
+  transpileDependencies: ['vuetify'],
+
+  configureWebpack: {
+    devServer: {
+      hot: true,
+      watchOptions: {
+        poll: true,
+      },
+    },
+  },
 };
