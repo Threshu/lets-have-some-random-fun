@@ -1,6 +1,7 @@
 <template>
   <div>
     <v-navigation-drawer v-model="drawer" absolute temporary class="position-fixed">
+      <app-logo class="bg-primary" />
       <v-list-item class="bg-primary">
         <v-list-item-avatar class="mw-fit-content ma-0" height="96px">
           <v-img :src="pokemon_img" width="70px" height="96px" class="ma-0"></v-img>
@@ -36,6 +37,7 @@
       <v-btn icon dark @click.stop="drawer = !drawer">
         <v-icon>mdi-menu</v-icon>
       </v-btn>
+      <app-logo />
       <v-spacer />
       <dark-mode-button />
     </v-app-bar>
@@ -43,6 +45,7 @@
 </template>
 
 <script>
+import AppLogo from "./AppLogo.vue";
 import DarkModeButton from "./DarkModeButton.vue";
 const NUMBER_OF_POKEMONS = 150;
 const PIKACHU = "Pikachu";
@@ -87,6 +90,7 @@ export default {
   },
   components: {
     DarkModeButton,
+    AppLogo,
   },
 };
 </script>
