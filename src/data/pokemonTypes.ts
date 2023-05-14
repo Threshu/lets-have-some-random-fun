@@ -1,0 +1,32 @@
+const NORMAL='normal';
+const FIGHTING='fighting';
+const FLYING='flying';
+const POISON='poison';
+const GROUND='ground';
+const ROCK='rock';
+const BUG='bug';
+const GHOST='ghost';
+const FIRE='fire';
+const WATER='water';
+const GRASS='grass';
+const ELECTRIC='electric';
+const PSYCHIC='psychic';
+const ICE='ice';
+const DRAGON='dragon';
+export const TYPES={
+	[NORMAL]: "#A8A878",
+	[FIGHTING]: "#C03028",
+	[FLYING]: "#A890F0",
+	[POISON]: "#A040A0",
+	[GROUND]: "#E0C068",
+	[ROCK]: "#B8A038",
+	[BUG]: "#A8B820",
+	[GHOST]: "#705898",
+	[FIRE]: "#F08030",
+	[WATER]: "#6890F0",
+	[GRASS]: "#78C850",
+	[ELECTRIC]: "#F8D030",
+	[PSYCHIC]: "#F85888",
+	[ICE]: "#98D8D8",
+	[DRAGON]: "#7038F8"
+};

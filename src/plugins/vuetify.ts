@@ -14,8 +14,8 @@ const opts={
 				primary: "#ee1515",
 				secondary: "#222224",
 				vuetifyText: "#727272", //grey
-				vuetifyWhiteText: "#ffffff", //white text (for example text in manager menu),
-				vuetifyBlackText: "#000000", //black text
+				vuetifyThemeContrast: "#000000", //white text (for example text in manager menu),
+				vuetifyBlackText: "#000000",
 				vuetifyMenuBgHover: "#D3D3D3", //hover bg for menu items
 				vuetifyWorkstationBg: "#f2f2f2"
 			},
@@ -23,23 +23,14 @@ const opts={
 				primary: "#ee1515",
 				secondary: "#222224",
 				vuetifyText: "#ffffff",
-				vuetifyWhiteText: "#ffffff", //white text (for example text in manager menu)
-				vuetifyBlackText: "#000000", //black text
+				vuetifyThemeContrast: "#ffffff", //white text (for example text in manager menu)
+				vuetifyBlackText: "#000000",
 				vuetifyMenuBg: "#363636", // menu bg item color
 				vuetifyMenuBgHover: "#474645", //hover bg for menu items,
 				vuetifyWorkstationBg: "#363636"
 			}
 		}
-	},
-	breakpoint: {
-		thresholds: {
-			xs: 340,
-			sm: 540,
-			md: 800,
-			lg: 992
-		},
-		scrollBarWidth: 24
-	},
+	}
 };
 
 

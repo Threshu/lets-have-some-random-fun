@@ -1,4 +1,4 @@
-# lets-have-some-random-fun
+# vuetify-pokemons
 
 ## Project setup
 ```
