@@ -79,7 +79,8 @@ export default {
       this.selectedPage = selectedPage;
       let offset;
       if (selectedPage === 1) offset = 0;
-      if (selectedPage !== 1) offset = selectedPage * this.itemsPerPage - 10;
+      if (selectedPage !== 1)
+        offset = selectedPage * this.itemsPerPage - this.itemsPerPage;
       this.$emit("changePage", offset, this.itemsPerPage);
     },
     changeNumberOfItemsVisible(number) {
