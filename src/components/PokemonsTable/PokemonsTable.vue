@@ -52,10 +52,12 @@
 import TablePagination from "@/components/Common/TablePagination.vue";
 import SinglePokemonDetails from "@/components/PokemonsTable/SinglePokemonDetails.vue";
 import { TYPES } from "@/data/pokemonTypes";
-export default {
+import { Pokemon } from "@/types/Pokemon";
+import { defineComponent } from "vue";
+export default defineComponent({
   data() {
     return {
-      loader: false,
+      loader: false as boolean,
       expanded: [],
       TYPES: TYPES,
       headers: [
@@ -97,42 +99,41 @@ export default {
         },
         { text: "", value: "data-table-expand" },
       ],
-      pokemonsApiData: [],
-      apiItemsCount: 0,
+      pokemonsApiData: [] as Array<Pokemon>,
+      apiItemsCount: 0 as number,
       params: {
-        offset: 0,
-        limit: 10,
+        offset: 0 as number,
+        limit: 10 as number,
       },
     };
   },
   watch: {
     params: {
       deep: true,
-      handler() {
-        this.getPokemons();
-      },
+      handler: "getPokemons",
     },
   },
   computed: {
-    pokemons_to_display() {
+    pokemons_to_display(): Array<Pokemon> {
       const pokemons = this.pokemonsApiData;
-      return pokemons.map((pokemon) => {
+      if (!Array.isArray(pokemons) || pokemons == null) return [];
+      return pokemons.map((pokemon: Pokemon) => {
         const pokemonName = pokemon.name ?? "";
         pokemon.pokemonName = `${pokemonName.charAt(0).toUpperCase()}${pokemonName.slice(
           1
         )}`;
-        const types = pokemon.types.map((type) => type.type.name);
+        const types = pokemon.types.map((pokemonType) => pokemonType.type.name);
         pokemon.pokemonTypes = types;
         pokemon.img = pokemon?.sprites?.front_default ?? "";
         return pokemon;
       });
     },
-    api_items_count() {
-      return this.apiItemsCount;
+    api_items_count(): number {
+      return this.apiItemsCount ?? 0;
     },
   },
-  async mounted() {
-    await this.getPokemons();
+  mounted() {
+    this.getPokemons();
   },
   methods: {
     async getPokemons() {
@@ -142,7 +143,7 @@ export default {
       });
       this.apiItemsCount = response.data.count;
       const pokemonList = response.data.results;
-      const pokemonDetailsPromises = pokemonList.map(async (pokemon) => {
+      const pokemonDetailsPromises = pokemonList.map(async (pokemon: Pokemon) => {
         const result = await this.$http.get(pokemon.url);
         return result?.data;
       });
@@ -159,5 +160,5 @@ export default {
     SinglePokemonDetails,
     TablePagination,
   },
-};
+});
 </script>
