@@ -1,128 +1,97 @@
 <template>
-  <v-container>
-    <v-row class="text-center">
-      <v-col cols="12">
-        <v-img :src="require('../assets/logo.svg')" class="my-3" contain height="200" />
-      </v-col>
-
-      <v-col class="mb-4">
-        <h1 class="display-2 font-weight-bold mb-3">Welcome to Vuetify</h1>
-
-        <p class="subheading font-weight-regular">
-          For help and collaboration with other Vuetify developers,
-          <br />please join our online
-          <a href="https://community.vuetifyjs.com" target="_blank">Discord Community</a>
-        </p>
-      </v-col>
-
-      <v-col class="mb-5" cols="12">
-        <h2 class="headline font-weight-bold mb-3">What's next?</h2>
-
-        <v-row justify="center">
-          <a
-            v-for="(next, i) in whatsNext"
-            :key="i"
-            :href="next.href"
-            class="subheading mx-3"
-            target="_blank"
-          >
-            {{ next.text }}
-          </a>
-        </v-row>
-      </v-col>
-
-      <v-col class="mb-5" cols="12">
-        <h2 class="headline font-weight-bold mb-3">Important Links</h2>
-
-        <v-row justify="center">
-          <a
-            v-for="(link, i) in importantLinks"
-            :key="i"
-            :href="link.href"
-            class="subheading mx-3"
-            target="_blank"
-          >
-            {{ link.text }}
-          </a>
-        </v-row>
-      </v-col>
-
-      <v-col class="mb-5" cols="12">
-        <h2 class="headline font-weight-bold mb-3">Ecosystem</h2>
-
-        <v-row justify="center">
-          <a
-            v-for="(eco, i) in ecosystem"
-            :key="i"
-            :href="eco.href"
-            class="subheading mx-3"
-            target="_blank"
-          >
-            {{ eco.text }}
-          </a>
-        </v-row>
-      </v-col>
+  <v-container class="h-inherit">
+    <v-row class="justify-content-center">
+      <div class="pokemon-text pokemon-big-text">WHO'S THAT POKEMON?</div>
     </v-row>
+    <div class="d-flex justify-content-center">
+      <template v-if="!loader">
+        <vue-flip :value="flipped" width="50%" height="50%" transition="1s">
+          <template v-slot:front>
+            <template v-if="!flipped">
+              <div
+                class="overlay"
+                :style="{
+                  maskImage: `url(${pokemon_home_img})`,
+                }"
+              />
+              <button
+                @click="flipped = !flipped"
+                class="pokemon-text reveal-pokemon-text"
+              >
+                REVEAL POKEMON
+              </button>
+            </template>
+          </template>
+          <template v-slot:back>
+            <template v-if="flipped">
+              <div>
+                <img :src="pokemon_home_img" width="100%" />
+                <div class="pokemon-text pokemon-big-text text-center">
+                  {{ pokemon_name }}
+                </div>
+              </div>
+            </template>
+          </template>
+        </vue-flip>
+      </template>
+      <template v-else>
+        <v-progress-circular
+          :size="100"
+          color="primary"
+          class="home-loader"
+          indeterminate
+        />
+      </template>
+    </div>
   </v-container>
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-
-export default Vue.extend({
+import { Pokemon } from "@/types/Pokemon";
+import { AxiosResponse } from "axios";
+import VueFlip from "vue-flip";
+import { defineComponent } from "vue";
+const NUMBER_OF_POKEMONS = 150;
+const PIKACHU = "Pikachu";
+const PIKACHU_IMG =
+  "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png";
+export default defineComponent({
   name: "HelloWorld",
-
-  data: () => ({
-    ecosystem: [
-      {
-        text: "vuetify-loader",
-        href: "https://github.com/vuetifyjs/vuetify-loader",
-      },
-      {
-        text: "github",
-        href: "https://github.com/vuetifyjs/vuetify",
-      },
-      {
-        text: "awesome-vuetify",
-        href: "https://github.com/vuetifyjs/awesome-vuetify",
-      },
-    ],
-    importantLinks: [
-      {
-        text: "Documentation",
-        href: "https://vuetifyjs.com",
-      },
-      {
-        text: "Chat",
-        href: "https://community.vuetifyjs.com",
-      },
-      {
-        text: "Made with Vuetify",
-        href: "https://madewithvuejs.com/vuetify",
-      },
-      {
-        text: "Twitter",
-        href: "https://twitter.com/vuetifyjs",
-      },
-      {
-        text: "Articles",
-        href: "https://medium.com/vuetify",
-      },
-    ],
-    whatsNext: [
-      {
-        text: "Explore components",
-        href: "https://vuetifyjs.com/components/api-explorer",
-      },
-      {
-        text: "Select a layout",
-        href: "https://vuetifyjs.com/getting-started/pre-made-layouts",
-      },
-      {
-        text: "Frequently Asked Questions",
-        href: "https://vuetifyjs.com/getting-started/frequently-asked-questions",
-      },
-    ],
-  }),
+  data() {
+    return {
+      flipped: false as boolean,
+      loader: false as boolean,
+      randomPokemonId: 1 as number,
+      apiResponse: {
+        data: null,
+      } as AxiosResponse,
+    };
+  },
+  computed: {
+    random_pokemon(): Pokemon {
+      return this.apiResponse?.data;
+    },
+    pokemon_name(): string {
+      const name = this.random_pokemon?.name ?? PIKACHU;
+      const firstLetter = name.charAt(0).toUpperCase();
+      return `${firstLetter}${name.slice(1)}`;
+    },
+    pokemon_img(): string {
+      return this.random_pokemon?.sprites?.front_default ?? PIKACHU_IMG;
+    },
+    pokemon_home_img(): string {
+      return this.random_pokemon?.sprites?.other?.home?.front_default ?? PIKACHU_IMG;
+    },
+  },
+  async mounted() {
+    this.randomPokemonId = Math.floor(Math.random() * NUMBER_OF_POKEMONS) + 1;
+    const randomPokemonID = this.randomPokemonId ?? 1;
+    this.loader = true;
+    this.apiResponse = await this.$http.get(`pokemon/${randomPokemonID}`);
+    this.loader = false;
+  },
+  components: {
+    VueFlip: VueFlip as any,
+  },
 });
 </script>

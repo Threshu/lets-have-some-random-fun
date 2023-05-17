@@ -69,3 +69,54 @@ html { overflow-y: auto }
 .pointer {
 	cursor: pointer;
 }
+
+.h-inherit {
+	height: inherit;
+}
+
+.position-relative {
+	position: relative;
+}
+
+.pokemon-big-text {
+	font-size: 3em;
+  letter-spacing: 0.3em;
+}
+
+.pokemon-text {
+  font-family: "Pokemon Solid", sans-serif;
+  color: $pokemonYellow;
+  -webkit-text-stroke: 2px $pokemonBlue;
+}
+
+.reveal-pokemon-text {
+	font-size: 3em;
+  letter-spacing: 0.4em;
+	animation: pulsate 2s infinite;
+}
+
+@keyframes pulsate {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.overlay {
+  width: 100%;
+  height: 65vh;
+	background-color: var(--v-vuetifyThemeContrast-base);
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-repeat: no-repeat;
+  mask-position: center;
+}
+
+.home-loader {
+	top: 10vh;
+}

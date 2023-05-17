@@ -28,7 +28,7 @@
       </template>
     </template>
     <template v-else>
-      <v-progress-circular :size="50" color="primary" indeterminate></v-progress-circular>
+      <v-progress-circular :size="50" color="primary" indeterminate />
     </template>
   </v-row>
 </template>
