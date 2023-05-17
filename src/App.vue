@@ -10,26 +10,20 @@
 
 <script lang="ts">
 import AppNavigation from "./components/Main/AppNavigation.vue";
-export default {
+import { defineComponent } from "vue";
+export default defineComponent({
   name: "App",
   components: {
     AppNavigation,
   },
-};
+  mounted() {
+    this.setDarkMode();
+  },
+  methods: {
+    setDarkMode() {
+      const darkMode = localStorage.getItem("darkMode");
+      if (darkMode === "true") this.$vuetify.theme.dark = true;
+    },
+  },
+});
 </script>
-
-<!--import { Component, Vue } from "vue-property-decorator";
-//import DarkModeButtonVue from "./components/Main/DarkModeButton.vue";
-
-//@Component({
-//  components: {
-//    DarkModeButton: DarkModeButtonVue,
-//  },
-//})
-//export default class App extends Vue {
-//  async mounted() {
-//    const xd = await this.$http.get("pokemon");
-//  }
-//}
-//
-</script>-->
