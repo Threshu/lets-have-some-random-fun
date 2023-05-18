@@ -16,6 +16,18 @@ const routes: Array<RouteConfig>=[
 		component: () =>
 			import("@/components/PokemonsTable/PokemonsTable.vue"),
 	},
+	{
+		path: "/generations",
+		name: "PokemonGenerations",
+		component: () =>
+			import("@/components/Generations/PokemonGenerations.vue"),
+	},
+	{
+		path: "/generations-comparison",
+		name: "PokemonGenerationsComparison",
+		component: () =>
+			import("@/components/Generations/PokemonGenerationsComparison.vue"),
+	},
 ];
 
 const router=new VueRouter({

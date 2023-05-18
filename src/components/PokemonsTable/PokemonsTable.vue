@@ -8,7 +8,7 @@
         :loading="loader"
         no-results-text="No Pokemons in database"
         no-data-text="No Pokemons in database"
-        :items-per-page="-1"
+        :items-per-page="limit"
         hide-default-footer
         show-expand
         class="pokemon-table elevation-5"
@@ -114,6 +114,9 @@ export default defineComponent({
     },
   },
   computed: {
+    limit(): number {
+      return this.params?.limit ?? 10;
+    },
     pokemons_to_display(): Array<Pokemon> {
       const pokemons = this.pokemonsApiData;
       if (!Array.isArray(pokemons) || pokemons == null) return [];

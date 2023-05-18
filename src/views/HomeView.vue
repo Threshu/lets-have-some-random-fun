@@ -5,7 +5,7 @@
     </v-row>
     <div class="d-flex justify-content-center">
       <template v-if="!loader">
-        <vue-flip :value="flipped" width="50%" height="50%" transition="1s">
+        <vue-flip :value="flipped" width="50%" height="50%" transition="1.5s">
           <template v-slot:front>
             <template v-if="!flipped">
               <div

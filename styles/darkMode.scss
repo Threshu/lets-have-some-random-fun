@@ -1,0 +1,18 @@
+@import "variables.scss";
+.theme--dark {
+	.apexcharts-legend-text,
+	.apexcharts-text {
+		fill: $white;
+		color: $white !important;
+	}
+	.apexcharts-menu-icon {
+		svg {
+			path:nth-child(2) {
+				fill: $primary;
+			}
+		}
+	}
+	.apexcharts-menu-item {
+		color: $black;
+	}
+}

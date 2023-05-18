@@ -58,6 +58,16 @@ export default {
       navigation: [
         { title: "Home", icon: "mdi-pokeball", routeName: "Home" },
         { title: "Pokemon Table", icon: "mdi-table-large", routeName: "PokemonTable" },
+        {
+          title: "Generations",
+          icon: "mdi-compost",
+          routeName: "PokemonGenerations",
+        },
+        {
+          title: "Statistics",
+          icon: "mdi-chart-pie-outline",
+          routeName: "PokemonGenerationsComparison",
+        },
       ],
       randomPokemonId: 1,
       apiResponse: {},

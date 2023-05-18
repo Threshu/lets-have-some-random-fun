@@ -83,6 +83,16 @@ html { overflow-y: auto }
   letter-spacing: 0.3em;
 }
 
+.apexcharts-title-text {
+	font-family: "Pokemon Solid", sans-serif !important;
+	margin-top: 15px;
+	font-size: 1.2em;
+	fill: $pokemonYellow;
+	letter-spacing: 0.3em;
+	stroke: $pokemonBlue;
+	stroke-width: 1px;
+}
+
 .pokemon-text {
   font-family: "Pokemon Solid", sans-serif;
   color: $pokemonYellow;
@@ -119,4 +129,22 @@ html { overflow-y: auto }
 
 .home-loader {
 	top: 10vh;
+}
+
+.v-main__wrap {
+	overflow-y: hidden;
+}
+
+.h-100 {
+	height: 100%;
+}
+
+.w-100 {
+	width: 100%;
+}
+
+#generationStats {
+	.apexcharts-canvas {
+		margin: auto;
+	}	
 }

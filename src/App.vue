@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app :class="{ 'mobile-style': is_mobile }">
     <app-navigation />
     <v-main>
       <router-view />
@@ -15,6 +15,11 @@ export default defineComponent({
   name: "App",
   components: {
     AppNavigation,
+  },
+  computed: {
+    is_mobile(): boolean {
+      return window.matchMedia("(max-width: 767px)").matches;
+    },
   },
   mounted() {
     this.setDarkMode();
