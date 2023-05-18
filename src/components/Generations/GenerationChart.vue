@@ -13,7 +13,6 @@ export default defineComponent({
   },
   computed: {
     generation_number(): number {
-      console.log(this.generation);
       return this.generation?.id ?? 1;
     },
     series(): Array<any> {

@@ -14,13 +14,6 @@ const axiosInstance=axios.create({
 
 axiosInstance.interceptors.response.use(
 	(response) => {
-		//Vue.prototype.$snotify.success('Example body content', {
-		//	timeout: 2000,
-		//	showProgressBar: false,
-		//	closeOnClick: false,
-		//	pauseOnHover: true
-		//});
-
 		return response;
 	},
 	(error) => {

@@ -15,7 +15,8 @@
 import { Generation } from "@/types/Generation";
 import { mapGetters, mapMutations } from "vuex";
 import { ApexOptions } from "apexcharts";
-export default {
+import { defineComponent } from "vue";
+export default defineComponent({
   computed: {
     ...mapGetters({
       getAllGenerations: "getAllGenerations",
@@ -86,7 +87,7 @@ export default {
       this.loader = false;
     },
   },
-};
+});
 </script>
 
 <style></style>

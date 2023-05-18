@@ -31,8 +31,9 @@
 import { Generation } from "@/types/Generation";
 import GenerationChart from "./GenerationChart.vue";
 import { mapGetters, mapMutations } from "vuex";
+import { defineComponent } from "vue";
 const NUMBER_OF_GENERATIONS = 9;
-export default {
+export default defineComponent({
   components: { GenerationChart },
   data() {
     return {
@@ -80,5 +81,5 @@ export default {
       this.loader = false;
     },
   },
-};
+});
 </script>
