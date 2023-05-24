@@ -4,9 +4,9 @@ module.exports = {
   configureWebpack: {
     devServer: {
       hot: true,
-      watchOptions: {
-        poll: true,
-      },
+      //watchOptions: {
+      //  poll: true,
+      //},
     },
   },
 };
