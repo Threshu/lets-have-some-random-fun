@@ -1,8 +1,14 @@
 .mobile-style {
+	#generationStats {
+		.apexcharts-title-text {
+			display: none;
+		}
+	}
+
 	.v-main__wrap {
 		.container {
 			.row {
-				padding-top: 20px
+				padding-top: 20px;
 			}
 		}
 	}
